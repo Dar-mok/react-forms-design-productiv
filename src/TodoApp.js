@@ -39,6 +39,7 @@ function TodoApp({initialTodos, idCounter}) {
     setTodos(newTodos)
   }
 
+
   return (
       <main className="TodoApp">
         <div className="row">
@@ -51,7 +52,7 @@ function TodoApp({initialTodos, idCounter}) {
 
             {todos.length > 0 ? <section className="mb-4">
               <h3>Top Todo</h3>
-              <TopTodo />
+              <TopTodo todos={todos}/>
             </section> : <section className="mb-4">No Todos</section>}
 
             <section>
