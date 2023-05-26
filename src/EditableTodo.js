@@ -29,9 +29,9 @@ function EditableTodo({ todo, remove, update }) {
     }
 
     /** Edit form saved; toggle isEditing and update in ancestor. */
-    function handleSave(evt, formData) {
-      evt.preventDefault();
-      update(todo);
+    function handleSave(formData){
+      let updatedTodo = {...todo, ...formData}
+      update(updatedTodo);
       setIsEditing(false);
     }
 

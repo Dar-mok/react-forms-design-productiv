@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 
-
+const DEFAULT_TODO_VAL = {title: "",
+                          description: "",
+                          priority: 3}
 /** Form for adding.
  *
  * Props:
@@ -9,30 +11,28 @@ import React, { useState } from "react";
  *
  * { TodoApp, EditableTodo } -> TodoForm
  */
-//add GLOBAL CONSTANT TO HOLD DEAFULT CALUE FOR TODO
-function TodoForm({todo, saveOrCreate}) {
-  
-    const eitherTodo = todo || {title: "",
-                                description: "",
-                                priority: 3}
 
-  const [formData, setFormData] = useState( eitherTodo );
+function TodoForm({todo=DEFAULT_TODO_VAL, saveOrCreate}) {
 
-  /** Update form input. check defination for handle change in notes/demo code*/
+  const [formData, setFormData] = useState( todo );
+
+  /** Update form input. check definition for handle change in notes/demo code*/
+
+
   function handleChange(evt) {
-    const fieldName = evt.target.name;
-    const value = evt.target.value;
-    setFormData(currData => {
-        currData[fieldName] = value;
-        return {...currData};
-    });
+    const { name, value } = evt.target;
+
+    setFormData(currData => ({
+        ...currData,
+        [name]:value
+    }));
   }
 
   /** Calls create when button is pressed and resets form data*/
   function handleSubmit(evt) {
     evt.preventDefault();
     saveOrCreate(formData);
-    setFormData( eitherTodo );
+    setFormData( todo );
   }
 
   return (

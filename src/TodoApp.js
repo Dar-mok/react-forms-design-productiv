@@ -59,7 +59,6 @@ function TodoApp({initialTodos, idCounter}) {
             <section>
               <h3 className="mb-3">Add Nü</h3>
               <TodoForm
-              todo={undefined}
               saveOrCreate={create}
               />
             </section>
