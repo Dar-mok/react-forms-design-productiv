@@ -13,18 +13,14 @@ import EditableTodo from "./EditableTodo";
 //
 
 function EditableTodoList({todos, remove, update}) {
-
-//cycle through todos array, adding a "EditableTodo" component on each round.
-
- let editableTodo = todos.map(todo=> {
-  return <EditableTodo todo={todo} remove={remove} update={update}/>
+  
+ let editableTodos = todos.map(todo=> {
+  return <EditableTodo todo={todo} remove={remove} update={update} key={todo.id}/>
  })
-
-
 
   return (
       <div>
-        {editableTodo}
+        {editableTodos}
       </div>
   );
 }

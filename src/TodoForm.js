@@ -9,15 +9,16 @@ import React, { useState } from "react";
  *
  * { TodoApp, EditableTodo } -> TodoForm
  */
-
-function TodoForm({create, idCounter, todo, handleSave}) {
+//add GLOBAL CONSTANT TO HOLD DEAFULT CALUE FOR TODO
+function TodoForm({todo, saveOrCreate}) {
+  
     const eitherTodo = todo || {title: "",
-    description: "",
-    priority: "",}
+                                description: "",
+                                priority: 3}
 
   const [formData, setFormData] = useState( eitherTodo );
 
-  /** Update form input. */
+  /** Update form input. check defination for handle change in notes/demo code*/
   function handleChange(evt) {
     const fieldName = evt.target.name;
     const value = evt.target.value;
@@ -27,17 +28,15 @@ function TodoForm({create, idCounter, todo, handleSave}) {
     });
   }
 
-  /** Calls create when button is pressed*/
+  /** Calls create when button is pressed and resets form data*/
   function handleSubmit(evt) {
     evt.preventDefault();
-    create(formData);
+    saveOrCreate(formData);
     setFormData( eitherTodo );
   }
 
   return (
-      <form className="NewTodoForm" onSubmit={todo.showEdit
-        ? handleSave
-        : handleSubmit}>
+      <form className="NewTodoForm" onSubmit={handleSubmit}>
 
         <div className="mb-3">
           <input

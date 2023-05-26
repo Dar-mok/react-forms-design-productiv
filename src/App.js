@@ -28,22 +28,19 @@ function App() {
               id: idCounter.next(),
               title: "Code!",
               description: "Write some code",
-              priority: 2,
-              showEdit:false
+              priority: 2
             },
             {
               id: idCounter.next(),
               title: "Make dinner",
               description: "Cook something healthy",
-              priority: 1,
-              showEdit:false
+              priority: 1
             },
             {
               id: idCounter.next(),
               title: "Go to bed",
               description: "In bed by 11:15",
-              priority: 3,
-              showEdit:false
+              priority: 3
             },
           ]}
           idCounter={idCounter}

@@ -24,13 +24,10 @@ function TodoApp({initialTodos, idCounter}) {
   }
 
   /** update a todo with updatedTodo */
-  //add a key that is like "isEditing" thats true or false and determines i
   function update(updatedTodo) {
-    let newTodos = todos.map(todo => {
-      if (todo.id === updatedTodo.id) return updatedTodo;
-      return todo;
-    })
-    setTodos(newTodos);
+    setTodos(prevTodos => {
+      return prevTodos.map(todo => todo.id === updatedTodo.id ? updatedTodo :todo)
+    });
   }
 
   /** delete a todo by id */
@@ -45,21 +42,25 @@ function TodoApp({initialTodos, idCounter}) {
         <div className="row">
 
           <div className="col-md-6">
-            {todos.length > 0 ? <EditableTodoList todos={todos} remove={remove} update={update}/> : <span className="text-muted">You have no todos.</span>}
+            {todos.length > 0
+            ? <EditableTodoList todos={todos} remove={remove} update={update}/>
+            : <span className="text-muted">You have no todos.</span>}
           </div>
 
           <div className="col-md-6">
 
-            {todos.length > 0 ? <section className="mb-4">
-              <h3>Top Todo</h3>
-              <TopTodo todos={todos}/>
-            </section> : <section className="mb-4">No Todos</section>}
+            {todos.length > 0
+              ? <section className="mb-4">
+                <h3>Top Todo</h3>
+                <TopTodo todos={todos}/>
+                </section>
+              : <section className="mb-4">No Todos</section>}
 
             <section>
               <h3 className="mb-3">Add Nü</h3>
               <TodoForm
-              create={create}
-              idCounter={idCounter}
+              todo={undefined}
+              saveOrCreate={create}
               />
             </section>
           </div>

@@ -14,11 +14,13 @@ import TodoForm from "./TodoForm";
  */
 
 function EditableTodo({ todo, remove, update }) {
+  const [isEditing, setIsEditing] = useState(false);
+  // const [formData, setFormData] = useState(todo)
 
     /** Toggle from todo to form if this is being edited */
     function toggleEdit() {
-        todo.showEdit = true;
         update(todo);
+        setIsEditing(true);
     }
 
     /** Call remove fn passed to this. */
@@ -27,17 +29,17 @@ function EditableTodo({ todo, remove, update }) {
     }
 
     /** Edit form saved; toggle isEditing and update in ancestor. */
-    function handleSave(formData) {
-        update()
+    function handleSave(evt, formData) {
+      evt.preventDefault();
+      update(todo);
+      setIsEditing(false);
     }
-
-    // const todosOrEdits = todo;
 
 
     return (
         <div className="EditableTodo">
-            {todo.showEdit === true
-                ? <TodoForm todo={todo, handleSave}/>
+            {isEditing === true
+                ? <TodoForm todo={todo} saveOrCreate={handleSave}/>
                 : <div className="mb-3">
                     <div className="float-end text-sm-end">
                         <button
@@ -51,7 +53,7 @@ function EditableTodo({ todo, remove, update }) {
                             Del
                         </button>
                     </div>
-                    <Todo />
+                    <Todo todo={todo}/>
                 </div>
             }
         </div>
