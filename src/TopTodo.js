@@ -17,8 +17,9 @@ function TopTodo({todos}) {
 
   let topPriority = todos[0];
   for (let todo of todos){
-    if (todo.priority > topPriority.priority){
+    if (todo.priority < topPriority.priority){
         topPriority = todo;
+    if(topPriority.priority === 1) break;
     }
   }
 

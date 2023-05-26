@@ -45,7 +45,7 @@ function TodoApp({initialTodos, idCounter}) {
         <div className="row">
 
           <div className="col-md-6">
-            {todos.length > 0 ? <EditableTodoList todos={todos}/> : <span className="text-muted">You have no todos.</span>}
+            {todos.length > 0 ? <EditableTodoList todos={todos} remove={remove} update={update}/> : <span className="text-muted">You have no todos.</span>}
           </div>
 
           <div className="col-md-6">

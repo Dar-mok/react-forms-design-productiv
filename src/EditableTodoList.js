@@ -10,14 +10,21 @@ import EditableTodo from "./EditableTodo";
  *
  * TodoApp -> EditableTodoList -> [ EditableTodo, ... ]
  */
+//
 
-function EditableTodoList() {
+function EditableTodoList({todos, remove, update}) {
+
+//cycle through todos array, adding a "EditableTodo" component on each round.
+
+ let editableTodo = todos.map(todo=> {
+  return <EditableTodo todo={todo} remove={remove} update={update}/>
+ })
+
+
+
   return (
       <div>
-        {/*   FIXME  */}
-        <EditableTodo />
-        <EditableTodo />
-        <EditableTodo />
+        {editableTodo}
       </div>
   );
 }
