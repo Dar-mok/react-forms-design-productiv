@@ -10,16 +10,12 @@ import React, { useState } from "react";
  * { TodoApp, EditableTodo } -> TodoForm
  */
 
-function TodoForm({create, idCounter}) {
-  //const defaultTodo = todo || {title: "",
-    // description: "",
-    // priority: "",}
-
-  const [formData, setFormData] = useState({
-    title: "",
+function TodoForm({create, idCounter, todo, handleSave}) {
+    const eitherTodo = todo || {title: "",
     description: "",
-    priority: "",
-  });
+    priority: "",}
+
+  const [formData, setFormData] = useState( eitherTodo );
 
   /** Update form input. */
   function handleChange(evt) {
@@ -31,17 +27,17 @@ function TodoForm({create, idCounter}) {
     });
   }
 
-  /** Call parent function and clear form and add newly created id */
+  /** Calls create when button is pressed*/
   function handleSubmit(evt) {
     evt.preventDefault();
     create(formData);
-    setFormData({ title: "", description: "", priority: "" });
+    setFormData( eitherTodo );
   }
 
-
-
   return (
-      <form className="NewTodoForm" onSubmit={handleSubmit}>
+      <form className="NewTodoForm" onSubmit={todo.showEdit
+        ? handleSave
+        : handleSubmit}>
 
         <div className="mb-3">
           <input
