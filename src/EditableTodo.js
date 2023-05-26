@@ -5,14 +5,15 @@ import TodoForm from "./TodoForm";
 /** Show editable todo item.
  *
  * Props
- * - todo
+ * - todo w/ property "showEdit"
+
  * - update(): fn to call to update a todo
  * - remove(): fn to call to remove a todo
  *
  * EditableTodoList -> EditableTodo -> { Todo, TodoForm }
  */
 
-function EditableTodo() {
+function EditableTodo({todo, remove, update}) {
 
   /** Toggle if this is being edited */
   function toggleEdit() { }
@@ -23,13 +24,16 @@ function EditableTodo() {
   /** Edit form saved; toggle isEditing and update in ancestor. */
   function handleSave(formData) { }
 
+  const todosOrEdits = todo
+
+
   return (
       <div className="EditableTodo">
 
-                EITHER
-
+                Either
+          {todo.showEdit === true ?
                 <TodoForm />
-
+          }
                 OR
 
                 <div className="mb-3">

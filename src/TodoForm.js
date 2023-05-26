@@ -10,7 +10,10 @@ import React, { useState } from "react";
  * { TodoApp, EditableTodo } -> TodoForm
  */
 
-function TodoForm({create}) {
+function TodoForm({create, idCounter}) {
+  //const defaultTodo = todo || {title: "",
+    // description: "",
+    // priority: "",}
 
   const [formData, setFormData] = useState({
     title: "",
@@ -28,7 +31,7 @@ function TodoForm({create}) {
     });
   }
 
-  /** Call parent function and clear form. */
+  /** Call parent function and clear form and add newly created id */
   function handleSubmit(evt) {
     evt.preventDefault();
     create(formData);
